@@ -20,6 +20,14 @@
   margin: 30px
 }
 
+.cantidad-votos{
+  background-color: black;
+  background-size: 30px;
+  font-weight: bold;
+  color: white;
+  border-radius: 20px;
+}
+
 @media (max-width: 600px) {
   .div-votes {
     flex-direction: column;
@@ -94,8 +102,11 @@
 .emoji-vote {
   width: 50px;
   height: 50px;
+  margin: 20px;
 }
 
 .options {
   margin-top: 40px;
 }
+
+
