@@ -57,10 +57,10 @@ function App() {
   const handleVote = async (optionId) => {
     if (hasVoted) {
       Swal.fire(
-        'Ya votaste, no podes votar de nuevo!',
+        'Ya votaste, no puedes votar de nuevo!',
         '',
         'warning'
-      )
+      );
       return;
     }
 
@@ -89,15 +89,22 @@ function App() {
         localStorage.setItem("hasVoted", "true");
         setHasVoted(true);
       }
+
+      // Obtén la URL de la imagen seleccionada
+      const selectedOption = options.find((option) => option.id === optionId);
+      const selectedOptionImage = selectedOption ? selectedOption.imageSrc : '';
+
+      // Muestra la alerta SweetAlert con la imagen del voto
+      Swal.fire({
+        title: 'Gracias por tu voto!',
+        html: `<img src="${selectedOptionImage}" alt="Imagen de voto" width="150" height="150" /><br/>`, // Inserta la imagen aquí
+        showCloseButton: true,
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#3085d6',
+      });
     } catch (error) {
       console.error("Error al actualizar los votos:", error);
     }
-
-    Swal.fire(
-      'Gracias por tu voto!',
-      '',
-      'success'
-    )
   };
   
   return (
