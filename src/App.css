@@ -3,6 +3,10 @@
   pointer-events: none;
 }
 
+.App{
+  min-height: 100vh;
+}
+
 .div-votes {
   align-items: center;
   margin-top: 100px;
