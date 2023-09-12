@@ -108,12 +108,9 @@ function App() {
       backgroundAttachment: 'fixed', 
       backgroundPosition: 'center center',
     }}>
-      <div className="logos-container">
-        <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQzPxHmR7v9kjmUqWVz_fFH0WL46T7qvvuxqGe8kpCbX00STpjHCp-b5R7vRw8QhlfgL8&usqp=CAU" alt="Logo 1" className="logo" />
-        <img  src="https://i0.wp.com/www.pescar.org.ar/wp-content/uploads/2021/10/Home-Boceto-Pescar-2021-312x96-1.png?resize=312%2C96&ssl=1" alt="Logo 2" className="logo" />
-      </div>
-      <h1>¿Podes definir el encuentro con un Emoji?</h1>
-      <h3>Clickea cual te represento: </h3>
+     
+      <h1>¿Podés definir el encuentro con un Emoji?</h1>
+      <h3>Clickea cuál te represento: </h3>
       <div className="options">
         <div className="options-container">
           {options.map((option,index) => (
@@ -127,21 +124,16 @@ function App() {
                 }}
               >
                 <img className='emoji-vote' src={option.imageSrc} alt={`Imagen de ${option.id}`} />
+                <p className="cantidad-votos" style={{ fontSize: '14px', color: 'white', marginTop: '5px' }}>{votes[option.id] || 0}</p>
               </button>
             </div>
           ))}
         </div>
       </div>
-      <div className="div-votes">
-      {options.map((option) => (
-            <div className="option" key={option.id}>
-              <span><img className='emoji-vote' src={option.imageSrc} alt={`Img votes ${option.id}`}/> <p className="cantidad-votos">{votes[option.id] || 0}</p></span>
-            </div>
-          ))}
+      <div className="logos-container">
+        <img  src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQzPxHmR7v9kjmUqWVz_fFH0WL46T7qvvuxqGe8kpCbX00STpjHCp-b5R7vRw8QhlfgL8&usqp=CAU" alt="Logo 1" className="logo" />
+        <img  src="https://i0.wp.com/www.pescar.org.ar/wp-content/uploads/2021/10/Home-Boceto-Pescar-2021-312x96-1.png?resize=312%2C96&ssl=1" alt="Logo 2" className="logo" />
       </div>
-      <h2 style={{
-        margin: '40px'
-      }}>¡Muchas Gracias!</h2>
     </div>
   );
 }
