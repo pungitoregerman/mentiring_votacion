@@ -57,7 +57,7 @@ function App() {
   const handleVote = async (optionId) => {
     if (hasVoted) {
       Swal.fire(
-        'Ya votaste, no puedes votar de nuevo!',
+        'Ya votaste anteriormente!',
         '',
         'warning'
       );
@@ -97,7 +97,7 @@ function App() {
       // Muestra la alerta SweetAlert con la imagen del voto
       Swal.fire({
         title: 'Gracias por tu voto!',
-        html: `<img src="${selectedOptionImage}" alt="Imagen de voto" width="150" height="150" /><br/>`, // Inserta la imagen aquí
+        html: `<img src="${selectedOptionImage}" alt="Imagen de voto" width="70" height="70" /><br/>`, // Inserta la imagen aquí
         showCloseButton: true,
         confirmButtonText: 'OK',
         confirmButtonColor: '#3085d6',
