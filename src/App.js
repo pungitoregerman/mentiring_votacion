@@ -28,7 +28,6 @@ const optionColors = ["#06507a", "#078f3b", "#470466", "#af0505"];
 
 function App() {
   const [votes, setVotes] = useState({});
-  const [hasVoted, setHasVoted] = useState(false);
 
   useEffect(() => {
     const votosDocRef = doc(db, "votos", "votos");
@@ -42,12 +41,6 @@ function App() {
       }
     });
 
-    // Verificar si el usuario ha votado anteriormente
-    const hasVotedPreviously = localStorage.getItem("hasVoted");
-    if (hasVotedPreviously) {
-      setHasVoted(true);
-    }
-
     return () => {
       // Detener la escucha cuando el componente se desmonta
       unsubscribe();
@@ -55,15 +48,6 @@ function App() {
   }, []);
 
   const handleVote = async (optionId) => {
-    if (hasVoted) {
-      Swal.fire(
-        'Ya votaste anteriormente!',
-        '',
-        'warning'
-      );
-      return;
-    }
-
     try {
       const votosDocRef = doc(db, "votos", "votos");
 
@@ -74,10 +58,6 @@ function App() {
         // El documento existe, actualízalo
         const updatedVotes = { ...votes, [optionId]: (votes[optionId] || 0) + 1 };
         await updateDoc(votosDocRef, updatedVotes);
-
-        // Marcar al usuario como que ya ha votado
-        localStorage.setItem("hasVoted", "true");
-        setHasVoted(true);
       } else {
         // El documento no existe, créalo con valores iniciales
         const initialVotes = {};
@@ -85,12 +65,9 @@ function App() {
           initialVotes[opt.id] = opt.id === optionId ? 1 : 0;
         });
         await setDoc(votosDocRef, initialVotes);
-        // Marcar al usuario como que ya ha votado
-        localStorage.setItem("hasVoted", "true");
-        setHasVoted(true);
       }
 
-      // Obtén la URL de la imagen seleccionada
+      //  URL de la imagen seleccionada
       const selectedOption = options.find((option) => option.id === optionId);
       const selectedOptionImage = selectedOption ? selectedOption.imageSrc : '';
 
